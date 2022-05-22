@@ -5,7 +5,7 @@ clone of https://neal.fun/spend/
 - redux-toolkit
 - chakra-ui
 
-## [Live on Netlify](https://n11-product-details.netlify.app/)
+
 
 ## In order to run this project in your local environment
 
