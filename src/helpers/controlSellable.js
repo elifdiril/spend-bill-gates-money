@@ -1,9 +1,9 @@
 const controlSellable = (count) => {
   if (count > 0) {
-    return false;
+    return true;
   }
   if (count === 0) {
-    return true;
+    return false;
   }
 };
 

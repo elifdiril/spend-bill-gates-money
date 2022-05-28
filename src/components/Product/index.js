@@ -11,8 +11,8 @@ function Product({ id }) {
   const item = items.find((tmp) => tmp.id === id);
 
   const [count, setCount] = useState(item.count);
-  const [isBuyable, setisBuyable] = useState(true);
-  const [isSellable, setisSellable] = useState(true);
+  const [isBuyable, setIsBuyable] = useState(true);
+  const [isSellable, setIsSellable] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -22,12 +22,14 @@ function Product({ id }) {
   useEffect(() => {
     dispatch(updateCount({ id: item.id, count: count }));
 
-    setisSellable(controlSellable(count));
+    setIsSellable(controlSellable(count));
   }, [count]);
 
   useEffect(() => {
     if (item.productPrice <= currentMoney) {
-      setisBuyable(false);
+      setIsBuyable(true);
+    }else{
+      setIsBuyable(false);
     }
   }, [currentMoney]);
 
@@ -69,7 +71,7 @@ function Product({ id }) {
       <Box alignItems="center" m="auto">
         <Button
           colorScheme="red"
-          isDisabled={isSellable}
+          isDisabled={!isSellable}
           width="100px"
           height="40px"
           ms={4}
@@ -87,8 +89,8 @@ function Product({ id }) {
           height="40px"
         />
         <Button
-          colorScheme="teal"
-          isDisabled={isBuyable}
+          colorScheme="green"
+          isDisabled={!isBuyable}
           width="80px"
           height="40px"
           me={4}
